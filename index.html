@@ -231,18 +231,26 @@ button{
 }
 
 .final-text{
-  color:#c2255c;
+  max-width: 90vw;              /* prevent overflow */
+  text-align: center;
+  line-height: 1.2;
+
+  /* RESPONSIVE FONT SIZE */
+  font-size: clamp(28px, 7vw, 42px);
+
+  color:#d6336c; /* dark pink */
+
+  /* BLACK OUTLINE */
   text-shadow:
-    0 3px 8px rgba(0,0,0,0.3),
-    0 0 18px rgba(255,234,159,0.8);
     -2px -2px 0 #000,
      2px -2px 0 #000,
     -2px  2px 0 #000,
      2px  2px 0 #000,
-
-   0 0 18px rgba(255,234,159,0.9);
+     0 0 18px rgba(214,51,108,0.9);
 
   animation: glow 2.5s ease-in-out infinite alternate;
+}
+
 
 
 }
@@ -408,6 +416,7 @@ function blowCandles(){
 
 </body>
 </html>
+
 
 
 
