@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Manasvi 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --pink: #ff6f91;
+  --peach: #ffc6a5;
+  --lavender: #b28dff;
+  --cream: #fff6ec;
+  --gold: #ffd166;
+  --dark: #2b2b2b;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+
+/* ---------- SCREENS ---------- */
+.screen{
+  display:none;
+  height:100vh;width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  gap:20px;
+  text-align:center;
+  animation: fadeIn 0.8s ease;
+
+}
+.active{display:flex}
+
+h1,h2,button{z-index:10}
+
+
+
+/* ---------- BUTTON ---------- */
+button{
+  padding:14px 32px;
+  font-size:18px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  background:#ff4d6d;
+  color:#fff;
+}
+
+/* ---------- UNLOCK ---------- */
+#unlock, #lights {
+  background: radial-gradient(circle at top, #111, #000);
+  color: white;
+}
+
+/* ---------- DECORATE ---------- */
+#decorate {
+  background: linear-gradient(135deg, var(--cream), #ffe8d6);
+  color: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+
+#globalDecor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* behind text, above background */
+  overflow: hidden;
+}
+
+/* Decorative border */
+#globalDecor.decorated::before {
+  content: "";
+  position: fixed;
+  inset: 14px;
+  border-radius: 22px;
+  border: 6px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, var(--pink), var(--lavender), var(--gold)) border-box;
+  box-shadow: 0 0 25px rgba(255,111,145,0.4);
+}
+
+
+
+/* ---------- BALLOONS ---------- */
+.balloon{
+  position:absolute;
+  width:55px;height:70px;
+  border-radius:50%;
+  animation:floatUp linear infinite;
+  opacity:.9;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  animation-timing-function: ease-in-out;
+}
+@keyframes floatUp{
+  from{transform:translateY(120vh)}
+  to{transform:translateY(-140vh)}
+}
+
+/* ---------- CONFETTI ---------- */
+.confetti{
+  position:absolute;
+  width:8px;height:14px;
+  animation:fall linear infinite;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh) rotate(0)}
+  to{transform:translateY(120vh) rotate(360deg)}
+}
+
+/* ---------- CAKE SCREEN ---------- */
+#cakeScreen {
+  justify-content: flex-start;
+  padding-top: 40px;
+  background: linear-gradient(135deg, #fff0f6, #e0c3fc);
+}
+
+
+.cake-wrapper {
+  margin-top: 50px;   /* ⬇️ pushes cake + candles down */
+  z-index: 2;
+  background: linear-gradient(180deg, #ffcad4, #ff8fab);
+  padding: 12px;
+  border-radius: 30px;
+}
+
+
+/* ---------- CAKE ---------- */
+.cake{
+  width:260px;
+  position:relative;
+  border-radius:0 0 25px 25px;
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
+  overflow: visible; /* ✅ allow candles */
+  border-radius: 0 0 30px 30px;
+  animation: popUp 0.8s ease forwards;
+
+}
+@keyframes popUp {
+  0% { transform: scale(0.6); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.cake-body{
+  overflow: hidden;
+  border-radius: 0 0 25px 25px;
+}
+
+.layer{height:70px}
+.bottom{background:#ffb703}
+.middle{background:#fb8500}
+.top{background:#ff006e}
+
+/* icing */
+.icing{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:35px;
+  background:white;
+  border-radius:0 0 20px 20px;
+  z-index:2;
+}
+
+/* sprinkles */
+.sprinkle{
+  width:6px;height:6px;
+  background:white;
+  position:absolute;
+  border-radius:2px;
+  z-index:3;
+}
+
+/* candles */
+.candle{
+  width:12px;height:40px;
+  background: linear-gradient(
+    180deg,
+    #bde0fe,   /* light sky blue */
+    #74c0fc    /* deeper blue */
+  );
+  position:absolute;
+  top:-40px;
+  z-index:5;
+}
+.flame{
+  width:14px;height:20px;
+  background:radial-gradient(circle,yellow,orange,red);
+  border-radius:50%;
+  position:absolute;
+  top:-18px;left:-1px;
+  animation:flicker .3s infinite alternate;
+  display:none;
+  box-shadow: 0 0 12px rgba(255,200,80,0.9);
+}
+@keyframes flicker{
+  from{transform:scale(1)}
+  to{transform:scale(1.2)}
+}
+
+/* ---------- FINAL ---------- */
+#final {
+  background: radial-gradient(circle at top, #ffafcc, #bde0fe);
+  color: #fff6ec;                 /* force white text */
+  text-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  letter-spacing: 1px;
+  animation: glow 2s ease-in-out infinite alternate;
+
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px rgba(255,255,255,0.6); }
+  to { text-shadow: 0 0 25px rgba(255,255,255,1); }
+}
+
+.final-text{
+  color:#c2255c;
+  text-shadow:
+    0 3px 8px rgba(0,0,0,0.3),
+    0 0 18px rgba(255,234,159,0.8);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+
+   0 0 18px rgba(255,234,159,0.9);
+
+  animation: glow 2.5s ease-in-out infinite alternate;
+
+
+}
+
+@keyframes glow{
+  from{ text-shadow:0 3px 8px rgba(0,0,0,0.3);}
+  to{ text-shadow:0 3px 18px rgba(255,234,159,1);}
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+<!-- 🎊 GLOBAL DECORATIONS -->
+<div id="globalDecor"></div>
+
+
+<!-- UNLOCK -->
+<div id="unlock" class="screen active">
+  <h1>Enter the password 💖</h1>
+  <input id="password" type="password" placeholder="Password"
+    style="font-size:18px;padding:10px;border-radius:8px;border:none">
+  <button onclick="unlock()">Unlock</button>
+</div>
+
+<!-- LIGHTS -->
+<div id="lights" class="screen">
+  <h1>Let’s light things up ✨</h1>
+  <button onclick="show('decorate')">Lights On</button>
+</div>
+
+<!-- DECORATE -->
+<div id="decorate" class="screen">
+  <h2>Well this seems dull… let’s decorate 🎈</h2>
+  <button onclick="decorate()">Decorate</button>
+</div>
+
+<!-- CAKE -->
+<div id="cakeScreen" class="screen">
+  <h2 id="cakeText">What is a birthday without a cake?🎂</h2>
+  <button id="cakeBtn" onclick="bringCake()">Bring the cake</button>
+  <div class="cake-wrapper" id="cakeArea"></div>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="screen">
+  <h1 class="final-text">🎉Happy Birthday Manasvi!!🎉</h1>
+<p class="final-subtext" style="color:#4a154b;">Shine bright as you always do and know that you are loved💖</p>
+</div>
+
+
+<script>
+const correctPassword="ChatpatiManasvi";
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function unlock(){
+  document.getElementById("password").value===correctPassword
+    ? show('lights')
+    : alert("Password incorrect ❌");
+}
+
+/* DECORATE */
+function decorate() {
+  const decor = document.getElementById('globalDecor');
+
+  if (decor.classList.contains('decorated')) return;
+
+  decor.classList.add('decorated');
+
+  // 🎈 Balloons
+  for (let i = 0; i < 45; i++) {
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.style.left = Math.random() * 100 + 'vw';
+    b.style.background = `hsl(${Math.random()*360},80%,60%)`;
+    b.style.animationDuration = (6 + Math.random()*6) + 's';
+    b.style.animationDelay = Math.random() * 4 + 's';
+    decor.appendChild(b);
+  }
+
+  // 🎊 Confetti
+  for (let i = 0; i < 120; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = `hsl(${Math.random()*360},90%,60%)`;
+    c.style.animationDuration = (3 + Math.random()*4) + 's';
+    c.style.animationDelay = Math.random() * 2 + 's';
+    decor.appendChild(c);
+  }
+
+  // Update decorate screen UI
+  const d = document.getElementById('decorate');
+  d.querySelector('h2').innerText = "Looks beautiful already 🎉";
+  const btn = d.querySelector('button');
+  btn.innerText = "Next ➜ Cake Time";
+  btn.onclick = () => show('cakeScreen');
+}
+
+
+/* CAKE */
+function bringCake(){
+  const area=document.getElementById('cakeArea');
+  area.innerHTML="";
+
+  const cake=document.createElement('div');
+  cake.className='cake';
+  cake.innerHTML = `
+  <div class="icing"></div>
+  <div class="cake-body">
+    <div class="layer top"></div>
+    <div class="layer middle"></div>
+    <div class="layer bottom"></div>
+  </div>
+`;
+
+
+  for(let i=0;i<40;i++){
+    const s=document.createElement('div');
+    s.className='sprinkle';
+    s.style.left=Math.random()*240+'px';
+    s.style.top=Math.random()*30+'px';
+    cake.appendChild(s);
+  }
+
+  for(let i=0;i<5;i++){
+    const c=document.createElement('div');
+    c.className='candle';
+    c.style.left=50+i*35+'px';
+    const f=document.createElement('div');
+    f.className='flame';
+    c.appendChild(f);
+    cake.appendChild(c);
+  }
+
+  area.appendChild(cake);
+  document.getElementById('cakeText').innerText="Let’s light it up ✨";
+  const btn=document.getElementById('cakeBtn');
+  btn.innerText="Light the candles";
+  btn.onclick=lightCandles;
+}
+
+function lightCandles(){
+  document.querySelectorAll('.flame').forEach(f=>f.style.display='block');
+  document.getElementById('cakeText').innerText="Make a wish before you blow!💫";
+  const btn=document.getElementById('cakeBtn');
+  btn.innerText="Blow the candles";
+  btn.onclick=blowCandles;
+}
+
+function blowCandles(){
+  document.querySelectorAll('.flame').forEach(f=>f.style.display='none');
+  setTimeout(()=>show('final'),1200);
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
